@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  mongodb1:
+    image: mongo:latest
+    container_name: mongodb1
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: khannedy
+      MONGO_INITDB_ROOT_PASSWORD: khannedy
+      MONGO_INITDB_DATABASE: admin
+    volumes:
+      - "./data-mongo1:/data/db"
+  mongodb2:
+    image: mongo:latest
+    container_name: mongodb2
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: khannedy
+      MONGO_INITDB_ROOT_PASSWORD: khannedy
+      MONGO_INITDB_DATABASE: admin
+    volumes:
+      - type: bind
+        source: "./data-mongo2"
+        target: "/data/db"
+        read_only: false
